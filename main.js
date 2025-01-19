@@ -40,38 +40,59 @@ function playRound(humanChoice, computerChoice) {
     console.log(`Draw!\nPlayer: ${humanWord}\nComputer: ${computerChoice}`);
   // paper x rock
   // paper x scissors
-  if (humanWord === "Paper" && computerChoice === "Rock")
+  if (humanWord === "Paper" && computerChoice === "Rock") {
     console.log(
       `Player won!\nPlayer: ${humanWord}\nComputer: ${computerChoice}`,
     );
-  if (humanWord === "Paper" && computerChoice === "Scissors")
+    humanScore += 1;
+  } else if (humanWord === "Paper" && computerChoice === "Scissors") {
     console.log(
       `Computer won!\nPlayer: ${humanWord}\nComputer: ${computerChoice}`,
     );
+    computerScore += 1;
+  }
   // rock x paper
   // rock x scissors
-  if (humanWord === "Rock" && computerChoice === "Paper")
+  if (humanWord === "Rock" && computerChoice === "Paper") {
     console.log(
       `Computer won!\nPlayer: ${humanWord}\nComputer: ${computerChoice}`,
     );
-  if (humanWord === "Rock" && computerChoice === "Scissors")
+    computerScore += 1;
+  } else if (humanWord === "Rock" && computerChoice === "Scissors") {
     console.log(
       `Player won!\nPlayer: ${humanWord}\nComputer: ${computerChoice}`,
     );
+    humanScore += 1;
+  }
 
   // scissors x paper
   // scissors x rock
-  if (humanWord === "Scissors" && computerChoice === "Paper")
+  if (humanWord === "Scissors" && computerChoice === "Paper") {
     console.log(
       `Player won!\nPlayer: ${humanWord}\nComputer: ${computerChoice}`,
     );
-  if (humanWord === "Scissors" && computerChoice === "Rock")
+    humanScore += 1;
+  } else if (humanWord === "Scissors" && computerChoice === "Rock") {
     console.log(
       `Computer won!\nPlayer: ${humanWord}\nComputer: ${computerChoice}`,
     );
+    computerScore += 1;
+  }
+  console.log(`Game score:\nPlayer: ${humanScore}\nComputer: ${computerScore}`);
 }
 
-const humanSelection = getUserChoice();
-const computerSelection = getComputerChoice();
+// Play game for 5 rounds
+function playGame() {
+  // Game loop
+  for (let i = 1; i <= 5; i++) {
+    console.log(`Round #${i}`);
 
-playRound(humanSelection, computerSelection);
+    // Get user and computer input
+    const humanSelection = getUserChoice();
+    const computerSelection = getComputerChoice();
+
+    playRound(humanSelection, computerSelection);
+  }
+}
+
+playGame();
