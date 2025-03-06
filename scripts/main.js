@@ -2,31 +2,6 @@
 let humanScore = 0
 let computerScore = 0
 
-/*  
- * Gets user choice and lowercases it to normalize it.
- * 
- * @param choice: string
- *
-*/
-const normalizeChoice = (choice) => {
-  if (!choice) return null
-  const formattedChoice = choice.trim().toLowerCase()
-  const choices = { rock: "rock", paper: "paper", scissors: "scissors" }
-  return choices[formattedChoice] || null
-}
-
-// Get the user input
-const getUserChoice = () => {
-  let choice = ""
-
-  do {
-    choice = normalizeChoice(prompt("Rock? Paper? Scissors?"))
-    if (!choice) { console.log("Please input a valid choice!") }
-  } while (!choice)
-
-  return choice
-}
-
 /*
  * Gets computer choice by taking a number from 0-2
  * 0: Rock
@@ -52,35 +27,27 @@ const getWinner = (humanCoice, computerChoice) => {
 }
 
 const playRound = (humanChoice, computerChoice) => {
-  console.log(`Player: ${humanScore}\nComputer: ${computerScore}`)
-
+  const result = document.querySelector("#result")
+  const score = document.querySelector("#score")
   const winner = getWinner(humanChoice, computerChoice)
 
-  if (winner === "draw") console.log("It's a draw!")
+  if (winner === "draw") result.textContent = "It's a draw!"
   else if (winner === "human") {
-    console.log("Human wins")
+    result.textContent = `Player wins! ${humanChoice} beats ${computerChoice}`
     humanScore++
   }
   else if (winner === "computer") {
-    console.log("Computer wins")
+    result.textContent = `Computer wins! ${computerChoice} beats ${humanChoice}`
     computerScore++
   }
 
-  console.log(`Score - Player: ${humanScore} | Computer: ${computerScore}`);
+  score.textContent = `Score - Player: ${humanScore} | Computer: ${computerScore}`
 }
 
-// Play game for 5 rounds
-const playGame = () => {
-  // Game loop
-  for (let i = 1; i <= 5; i++) {
-    console.log(`Round #${i}`)
-
-    // Get user and computer input
-    const humanSelection = getUserChoice()
-    const computerSelection = getComputerChoice()
-
-    playRound(humanSelection, computerSelection);
-  }
-}
-
-// playGame();
+document.querySelectorAll("#choice button").forEach(button => {
+  button.addEventListener("click", (event) => {
+    const humanChoice = event.target.id
+    const computerChoice = getComputerChoice()
+    playRound(humanChoice, computerChoice)
+  })
+})

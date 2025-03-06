@@ -11,7 +11,6 @@
 body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   font-family: "Inter", sistem-ui;
 }
 
@@ -19,6 +18,18 @@ h1 {
   font-size: 4vw;
   text-align: center;
   padding: 4vh 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+}
+
+p {
+  margin: 1rem 0;
+  text-align: center;
+  font-size: 24px;
 }
 
 .choices {
@@ -31,12 +42,14 @@ h1 {
     list-style: none;
 
     button {
+      margin: 2rem 0;
       padding: 1rem 2rem;
       border: none;
       border-radius: 50px;
       background: #000;
       color: #eff;
       text-align: center;
+      cursor: pointer;
     }
   }
 }
